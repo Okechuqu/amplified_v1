@@ -1,0 +1,77 @@
+{% extends 'head.html' %}{% block content %} {% load crispy_forms_tags %}
+<div class="bg-light py-2">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb mb-0 bg-light">
+        <li class="breadcrumb-item">
+          <a class="reset-anchor" href="/">Home</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Login</li>
+      </ol>
+    </nav>
+  </div>
+</div>
+{% if messages %} {% for message in messages %}
+<div
+  class="alert alert-{{ message.tags }} alert-dismissible fade show"
+  role="alert"
+>
+  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  {{ message }}
+</div>
+{% endfor %} {% endif %}
+<section class="py-5">
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-lg-5">
+        <h1 class="hero-heading">Login</h1>
+        <p class="text-muted mb-5">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <h2 class="h4 mb-4">Returning user</h2>
+        <form class="mb-5" action="" method="post">
+          {% csrf_token %}
+          <style>
+            .asteriskField {
+              display: none;
+            }
+            .form-text {
+              display: none;
+            }
+          </style>
+          {{ form|crispy }}
+          <div class="form-group col-12 mb-3">
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                id="flexCheckDefault"
+                type="checkbox"
+              />
+              <label class="form-check-label text-muted" for="flexCheckDefault"
+                >Remember me for next time</label
+              >
+            </div>
+            <div class="form-group col-12">
+              <button class="btn btn-primary" type="submit">Login</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-lg-5 ms-auto">
+        <h2 class="h4 mb-4">New customer</h2>
+        <p class="text-muted">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+        <a class="btn btn-info" href="/register">Create an account</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

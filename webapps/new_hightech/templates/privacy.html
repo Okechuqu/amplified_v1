@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<!-- Page Header Start -->
+{% for page in pageImage %}
+<div class="container-fluid page-header py-5" style="background: url({{page.img.url}}) no-repeat 0 -150px; background-size: cover;  ">
+  {% endfor %}
+  <div class="container text-center py-5">
+    {% for title in titles %}
+    <h1 class="display-2 text-white mb-4 animated slideInDown">{{ title.aboutSubTitle }}</h1>
+    <nav aria-label="breadcrumb animated slideInDown">
+      <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/">Pages</a></li>
+        <li class="breadcrumb-item" aria-current="page">{{ title.aboutSubTitle }}</li>
+      </ol>
+    </nav>
+    {% endfor %}
+  </div>
+</div>
+<!-- Page Header End -->
+
+<div class="container-fluid">
+    <div class="container pt-5">
+        <div>
+            {% for private in privacy %}
+            <p>Last Updated: {{ private.date }}</p>
+
+            <h5>Introduction</h5>
+            {% filter linebreaks %}
+            <p class="mb-4">{{ private.introduction | linebreaks }}</p>
+            {%endfilter%}
+
+            <h5>Information We Collect</h5>
+            {% filter linebreaks %}
+            <p class="mb-4">{{ private.info_context | linebreaks }}</p>
+            {%endfilter%}
+            <ul>
+                <li class="text-dark">{% filter linebreaks %}
+                    <p class="mb-4">{{ private.personal_data | linebreaks }}</p>
+                    {%endfilter%}
+                </li>
+                <li class="text-dark">{% filter linebreaks %}
+                    <p class="mb-4">{{ private.usage_data | linebreaks }}</p>
+                    {%endfilter%}
+                </li>
+                <li class="text-dark">{% filter linebreaks %}
+                    <p class="mb-4">{{ private.cookies | linebreaks }}</p>
+                    {%endfilter%}
+                </li>
+            </ul>
+
+            <h5>How We Use Your Information</h5>
+            {% filter linebreaks %}
+            <p class="mb-4">{{ private.use_of_info | linebreaks }}</p>
+            {%endfilter%}</li>
+            <ul>
+                {% for point in private.use_of_info_li.all %}
+                <li class="text-dark">{{ point.use_of_info_li }}</li>
+                {% endfor %}
+            </ul>
+
+            <h5>How We Share Your Information</h5>
+            {% filter linebreaks %}
+            <p class="mb-4">{{ private.info_share | linebreaks }}</p>
+            {%endfilter%}
+            <ul>
+                {% for point in private.info_share_li.all %}
+                <li class="text-dark">{{ point.info_share_li }}</li>
+                {% endfor %}
+            </ul>
+
+            <h5>Your Choices and Rights</h5>
+            {% filter linebreaks %}
+            <p class="mb-4">{{ private.choices_rights | linebreaks }}</p>
+            {%endfilter%}
+
+            <h5>Security Measures</h5>
+            {% filter linebreaks %}
+            <p class="mb-4">{{ private.security | linebreaks }}</p>
+            {%endfilter%}
+
+            <h5>Third-Party Links</h5>
+            {% filter linebreaks %}
+            <p class="mb-4">{{ private.third_party | linebreaks }}</p>
+            {%endfilter%}
+
+            <h5>Changes to This Privacy Policy</h5>
+            {% filter linebreaks %}
+            <p class="mb-4">{{ private.policy_update | linebreaks }}</p>
+            {%endfilter%}
+
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

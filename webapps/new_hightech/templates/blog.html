@@ -1,0 +1,78 @@
+{% extends 'base.html' %} {% block content %}
+
+{% for page in pageImage %}
+<div class="container-fluid page-header py-5" style="background: url({{page.img.url}})no-repeat 0 -150px; background-size: cover;  ">
+  {% endfor %}
+  <div class="container text-center py-5">
+    {% for title in titles %}
+    <h1 class="display-2 text-white mb-4 animated slideInDown">{{ title.aboutSubTitle }}</h1>
+    <nav aria-label="breadcrumb animated slideInDown">
+      <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/">Pages</a></li>
+        <li class="breadcrumb-item" aria-current="page">{{ title.aboutSubTitle }}</li>
+      </ol>
+    </nav>
+    {% endfor %}
+  </div>
+</div>
+<!-- Page Header End -->
+<!-- Fact Start -->
+{% include "front_template/facts.html" %}
+<!-- Fact End -->
+
+<!-- Blog Start -->
+<div id="blog" class="container-fluid blog py-5 mb-5">
+  <div class="container">
+    <div class="text-center mx-auto pb-5 wow fadeIn" data-wow-delay=".3s" style="max-width: 600px">
+      <h5 class="text-primary">{{ title.blogSubTitle }}</h5>
+      <h1>{{ title.blogTitle }}</h1>
+    </div>
+    <div class="row g-5 justify-content-center">
+      {% for blog in blogs %}
+      <div class="col-lg-6 col-xl-4 wow fadeIn" data-wow-delay=".3s">
+        <div class="blog-item position-relative bg-light rounded">
+          <img src="{{ blog.img.url }}" class="img-fluid w-100 rounded-top blog-img" alt="{{ blog.blogName }}" />
+          <span class="position-absolute px-4 py-3 bg-secondary text-white rounded" style="top: -28px; right: 20px">
+           {{ blog.blogName }}</span>
+          <div class="blog-btn d-flex justify-content-between position-relative px-3" style="margin-top: -75px">
+            <div class="blog-icon btn btn-secondary px-3 rounded-pill my-auto">
+              <a href="/blog" class="btn text-white">Read More</a>
+            </div>
+            <div class="blog-btn-icon btn btn-secondary px-4 py-3 rounded-pill">
+              <div class="blog-icon-1">
+                <p class="text-white px-2">
+                  Share<i class="fa fa-arrow-right ms-3"></i>
+                </p>
+              </div>
+              <div class="blog-icon-2">
+                <a href="https://www.facebook.com/" target="_blank" class="btn me-1"><i class="fab fa-facebook-f text-white"></i></a>
+                <a href="https://www.twitter.com/" target="_blank" class="btn me-1"><i class="fab fa-twitter text-white"></i></a>
+                <a href="https://www.instagram.com/" target="_blank" class="btn me-1"><i class="fab fa-instagram text-white"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="blog-content text-center position-relative px-3" style="margin-top: -25px">
+            <img src="{{ blog.authorImg.url }}"
+              class="testimonial-img img-fluid rounded-circle border border-4 border-white mb-3" alt="image" />
+            <h5 class="">By {{ blog.author }}</h5>
+            <span class="text-secondary">{{ blog.date }}</span>
+            {% filter linebreaks %}
+            <p class="py-0">{{ blog.blogContent | linebreaks }}</p>
+            {%endfilter%}
+          </div>
+          <div class="blog-coment d-flex justify-content-between px-4 py-2 border bg-dark rounded-bottom">
+            <a href="/" class="text-white"><small><i class="fas fa-share me-2 text-secondary"></i>{{ blog.get_share_count }}
+                Share</small></a>
+            <a href="/" class="text-white"><small><i class="fa fa-comments me-2 text-secondary"></i>{{ blog.get_comment_count }}
+                Comments</small></a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<!-- Blog End -->
+
+{% endblock content %}

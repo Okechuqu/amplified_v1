@@ -1,0 +1,88 @@
+{% extends 'base.html' %} {% block content %}
+
+
+<!-- Page Header Start -->
+{% for page in pageImage %}
+<div class="container-fluid page-header py-5" style="background: url({{page.img.url}})no-repeat; background-size: cover; ">
+  {% endfor %}
+  <div class="container text-center py-5">
+    {% for title in titles %}
+    <h1 class="display-2 text-white mb-4 animated slideInDown">{{ title.aboutSubTitle }}</h1>
+    <nav aria-label="breadcrumb animated slideInDown">
+      <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/">Pages</a></li>
+        <li class="breadcrumb-item" aria-current="page">{{ title.aboutSubTitle }}</li>
+      </ol>
+    </nav>
+    {% endfor %}
+  </div>
+</div><!-- Page Header End -->
+
+<!-- Register -->
+<div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+  <div class="wrapper wrapper--w680">
+    <div class="">
+      {% for contact in contacts %}
+      <div class="card-body" style="background: url({{contact.img.url}})">
+        {% endfor %}
+        <form class="form" method="POST" action="{% url 'registration' %}" enctype="multipart/form-data">
+          {% csrf_token %}
+          <!-- {{ studentsForm.as_p }} -->
+          <div class="row">
+            <div class="col-md-6">
+              <div class="mb-2">
+                <label for="firstName">First Name:</label>
+                {{ studentsForm.firstName }}
+              </div>
+              <div class="mb-2">
+                <label for="lastName">Last Name:</label>
+                {{ studentsForm.lastName }}
+              </div>
+              <div class="mb-2">
+                <label for="email">Email:</label>
+                {{ studentsForm.email }}
+              </div>
+              <div class="mb-2">
+                <label for="phone">Phone:</label>
+                {{ studentsForm.phone }}
+              </div>
+              <div class="mb-2">
+                <label for="studentType">Type of Student:</label>
+                {{ studentsForm.studentType }}
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-2">
+                <label for="image">Profile Image</label>
+                {{ studentsForm.image }}
+              </div>
+              <div class="mb-2">
+                <label for="gender">Gender</label>
+                {{ studentsForm.gender }}
+              </div>
+              <div class="mb-2">
+                <label for="occupation">Occupation</label>
+                {{ studentsForm.occupation }}
+              </div>
+              <div class="mb-2">
+                <label for="address">Address</label>
+                {{ studentsForm.address }}
+              </div>
+              <div class="mb-2">
+                <label for="courseOfStudy">Select Course</label>
+                {{ studentsForm.courseOfStudy }}
+              </div>
+            
+            </div>
+            <button type="submit" class="btn btn-primary mt-2">Register</button>
+          </div>      
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Register End -->
+
+{% endblock content %}

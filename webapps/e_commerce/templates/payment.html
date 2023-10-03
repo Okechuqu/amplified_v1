@@ -1,0 +1,202 @@
+{% extends 'head.html' %} {% load crispy_forms_tags %} {% block content %}
+
+<ul
+  class="nav nav-pills flex-column flex-sm-row mb-4 text-center bg-light"
+  id="pills-tab"
+  role="tablist"
+>
+  <li class="nav-item flex-fill" role="presentation">
+    <a
+      class="nav-link p-2 rounded-0 active"
+      id="pills-creditCard-tab"
+      data-bs-toggle="pill"
+      href="#pills-creditCard"
+      role="tab"
+      aria-controls="pills-creditCard"
+      aria-selected="true"
+      ><i class="fab fa-cc-visa me-2"></i
+      ><span class="small text-uppercase">Credit card</span></a
+    >
+  </li>
+  <li class="nav-item flex-fill" role="presentation">
+    <a
+      class="nav-link p-2 rounded-0"
+      id="pills-bankTransfer-tab"
+      data-bs-toggle="pill"
+      href="#pills-bankTransfer"
+      role="tab"
+      aria-controls="pills-bankTransfer"
+      aria-selected="false"
+      ><i class="fas fa-university me-2"></i
+      ><span class="small text-uppercase">Bank transfer</span></a
+    >
+  </li>
+  <li class="nav-item flex-fill" role="presentation">
+    <a
+      class="nav-link p-2 rounded-0"
+      id="pills-paypal-tab"
+      data-bs-toggle="pill"
+      href="#pills-paypal"
+      role="tab"
+      aria-controls="pills-paypal"
+      aria-selected="false"
+      ><i class="fab fa-cc-paypal me-2"></i
+      ><span class="small text-uppercase">Paypal</span></a
+    >
+  </li>
+</ul>
+<div class="tab-content mb-5" id="pills-tabContent">
+  <div
+    class="tab-pane fade show active"
+    id="pills-creditCard"
+    role="tabpanel"
+    aria-labelledby="pills-creditCard-tab"
+  >
+    <form action="#">
+      <div class="row">
+        <div class="form-group col-12 mb-3">
+          <label class="form-label small text-uppercase">Name on card</label>
+          <input
+            class="form-control"
+            type="text"
+            placeholder="e.g. Jason Doe"
+          />
+        </div>
+        <div class="form-group col-lg-8 mb-3">
+          <label class="form-label small text-uppercase">Card number</label>
+          <input
+            class="form-control"
+            type="text"
+            placeholder="0000-0000-0000-0000"
+          />
+        </div>
+        <div class="form-group col-lg-4 mb-3">
+          <label class="form-label small text-uppercase">CVV</label>
+          <input class="form-control" type="text" />
+        </div>
+        <div class="form-group col-lg-6 mb-3">
+          <label class="form-label small text-uppercase">Month</label>
+          <select class="form-control js-month" name="month" data-trigger>
+            <option value="">select Month</option>
+            <option value="Option 1">01</option>
+            <option value="Option 1">02</option>
+            <option value="Option 1">03</option>
+            <option value="Option 1">04</option>
+            <option value="Option 1">05</option>
+            <option value="Option 1">06</option>
+            <option value="Option 1">07</option>
+            <option value="Option 1">08</option>
+            <option value="Option 1">09</option>
+            <option value="Option 1">10</option>
+            <option value="Option 1">11</option>
+            <option value="Option 1">12</option>
+          </select>
+        </div>
+        <div class="form-group col-lg-6">
+          <label class="form-label small text-uppercase">Year</label>
+          <select class="form-control js-year" name="year" data-trigger>
+            <option value="">select Year</option>
+            <option value="Option 1">2020</option>
+            <option value="Option 1">2021</option>
+            <option value="Option 1">2022</option>
+            <option value="Option 1">2023</option>
+            <option value="Option 1">2024</option>
+            <option value="Option 1">2025</option>
+            <option value="Option 1">2026</option>
+            <option value="Option 1">2027</option>
+            <option value="Option 1">2028</option>
+            <option value="Option 1">2029</option>
+            <option value="Option 1">2030</option>
+          </select>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div
+    class="tab-pane fade"
+    id="pills-bankTransfer"
+    role="tabpanel"
+    aria-labelledby="pills-bankTransfer-tab"
+  >
+    <form action="#">
+      <div class="row">
+        <div class="form-group col-lg-6 mb-3">
+          <label class="form-label small text-uppercase">Routing Number</label>
+          <input
+            class="form-control"
+            type="text"
+            placeholder="e.g. Jason Doe"
+          />
+        </div>
+        <div class="form-group col-lg-6 mb-3">
+          <label class="form-label small text-uppercase">Account number</label>
+          <input
+            class="form-control"
+            type="text"
+            placeholder="0000-0000-0000-0000"
+          />
+        </div>
+        <div class="form-group col-12 mb-3">
+          <label class="form-label small text-uppercase"
+            >Name on bank account</label
+          >
+          <input class="form-control" type="text" />
+        </div>
+        <div class="form-group col-lg-6">
+          <label class="form-label small text-uppercase">Bank name</label>
+          <input class="form-control" type="text" />
+        </div>
+        <div class="form-group col-lg-6">
+          <label class="form-label small text-uppercase">Account type</label>
+          <select class="form-control js-accountType" name="accountType">
+            <option value="">Account type</option>
+            <option value="ARC">ARC</option>
+            <option value="BOC">BOC</option>
+            <option value="CCD">CCD</option>
+            <option value="PPD">PPD</option>
+            <option value="TEL">TEL</option>
+            <option value="WEB">WEB</option>
+          </select>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div
+    class="tab-pane fade"
+    id="pills-paypal"
+    role="tabpanel"
+    aria-labelledby="pills-paypal-tab"
+  >
+    <form action="#">
+      <div class="row">
+        <div class="form-group col-12 mb-3">
+          <label class="form-label small text-uppercase">Email address</label>
+          <input class="form-control" type="text" placeholder="Email address" />
+        </div>
+        <div class="form-group col-12 mb-3">
+          <label class="form-label small text-uppercase">Password</label>
+          <input class="form-control" type="password" placeholder="Password" />
+        </div>
+        <div class="form-group col-12 mb-3">
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              id="flexCheckDefault"
+              type="checkbox"
+            />
+            <label class="form-check-label" for="flexCheckDefault"
+              >Stay logged in for faster checkout</label
+            >
+          </div>
+        </div>
+        <div class="form-group col-12">
+          <button class="btn btn-primary btn-block" type="submit">
+            Login to Paypal
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

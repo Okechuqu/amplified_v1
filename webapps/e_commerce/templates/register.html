@@ -1,0 +1,58 @@
+{% extends 'head.html' %}{% block content %} {% load crispy_forms_tags %}
+<div class="bg-light py-2">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb mb-0 bg-light">
+        <li class="breadcrumb-item">
+          <a class="reset-anchor" href="/">Home</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Register</li>
+      </ol>
+    </nav>
+  </div>
+</div>
+
+<section class="py-5">
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-lg-5">
+        <h1 class="hero-heading">Register</h1>
+        <p class="text-muted mb-5">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+        <h2 class="h4 mb-4">Personal information</h2>
+        <form class="mb-5" action="" method="post">
+          {% csrf_token %}
+          <style>
+            .asteriskField {
+              display: none;
+            }
+            .form-text {
+              display: none;
+            }
+          </style>
+          {{ form|crispy }}
+          <div class="form-group col-12 mb-3">
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                id="flexCheckDefault"
+                type="checkbox"
+              />
+              <label class="form-check-label text-muted" for="flexCheckDefault"
+                >I have read and accept policy privacy</label
+              >
+            </div>
+          </div>
+          <div class="form-group col-12">
+            <button class="btn btn-primary" type="submit">
+              Create your account
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}

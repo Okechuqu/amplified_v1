@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<!-- Page Header Start -->
+{% for page in pageImage %}
+<div class="container-fluid page-header py-5" style="background: url({{page.img.url}}) no-repeat 0 -150px; background-size: cover;  ">
+  {% endfor %}
+  <div class="container text-center py-5">
+    {% for title in titles %}
+    <h1 class="display-2 text-white mb-4 animated slideInDown">{{ title.aboutSubTitle }}</h1>
+    <nav aria-label="breadcrumb animated slideInDown">
+      <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/">Pages</a></li>
+        <li class="breadcrumb-item" aria-current="page">{{ title.aboutSubTitle }}</li>
+      </ol>
+    </nav>
+    {% endfor %}
+  </div>
+</div>
+<!-- Page Header End -->
+
+<div class="container-fluid">
+    <div class="container pt-5">
+        <div class="helps-container">
+            {% for faq in faqs %}
+            <div class="section">
+                <div class="question" onclick="toggleAnswer('{{ faq.id }}')">Q: {{ faq.question }}</div>
+                <div class="answer" id="answer-{{ faq.id }}">
+                    A: {{ faq.answer }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

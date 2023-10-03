@@ -1,0 +1,11 @@
+{
+  "name": "new_hightech",
+  "type": "website",
+  "version": "0.0.0",
+  "author": "Sharashell Technology Limited",
+  "author_email": "example@gmail.com",
+  "description": "This is a system Sharashell website",
+  "placeholder": "https://d19m59y37dris4.cloudfront.net/it-worker/2-1/img/portfolio-3.jpg",
+  "js": [],
+  "css": []
+}

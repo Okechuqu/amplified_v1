@@ -1,0 +1,11 @@
+{
+    "name":"oluwa",
+    "type":"website",
+    "version":"0.0.0",
+    "author":"Okechuqu",
+    "author_email":"example@gmail.com",
+    "description":"This is a system Military website",
+    "placeholder":"https://plus.unsplash.com/premium_photo-1673548917645-e8d9ed21e2b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzd8fHRlY2hub2xvZ3l8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
+    "js":[],
+    "css":[]
+}

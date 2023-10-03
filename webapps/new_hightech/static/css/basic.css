@@ -1,0 +1,275 @@
+    /* GLOBAL SYLES */
+    body {
+        background-color: rgb(234, 227, 219);
+    }
+
+    br {
+        display: none !important;
+    }
+
+    .text-white {
+        color: #fff !important;
+    }
+
+    .text-secondary {
+        color: #d4a86a !important;
+    }
+
+    .project-img::before,
+    #carouselId,
+    .carousel-indicators li.active {
+        background: #ee9314 !important;
+    }
+
+    .project-img::after {
+        background: rgba(212, 168, 106) !important;
+    }
+
+    .btn,
+    .owl-prev,
+    .owl-next,
+    .bg-primary {
+        font-weight: 600;
+        transition: .5s;
+        background-color: #ee9314 !important;
+        border-color: #ee9314 !important;
+    }
+
+    .bd-primary {
+        border-color: #ee9314 !important;
+    }
+
+    .bd-bottom {
+        border-bottom: 1px solid #ee9314 !important;
+    }
+
+    .rating {
+        color: #ee9314 !important;
+    }
+
+    .navbar .navbar-nav .nav-link:hover,
+    .navbar .navbar-nav .nav-link.active,
+    .fullname {
+        color: #000 !important;
+    }
+
+    .owl-dot.active,
+    .carousel-control-next,
+    .bg-secondary,
+    .carousel-control-prev,
+    #carouselId,
+    .carousel-indicators li {
+        background-color: #d4a86a !important;
+    }
+
+    .team-item {
+        border-top: 30px solid #d4a86a !important;
+    }
+
+    .team-img img {
+        border: 10px solid #d4a86a !important;
+
+    }
+
+    .team-content::before,
+    .services-inner ::after {
+        background-color: #d4a86a !important;
+
+    }
+
+    .services-content-icon ::before {
+        color: #000 !important;
+    }
+
+    .text-primary,
+    .nav-item:hover {
+        color: rgb(8, 8, 8) !important;
+    }
+
+
+
+    .w-100 {
+        width: 100% !important;
+    }
+
+
+    /* Search Page */
+    input[type="search"] {
+        width: 90%;
+        margin-top: 15px;
+        padding: 7px 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px 0 0 4px;
+        outline: none;
+    }
+
+    .searchbtn {
+        padding: 8px 16px;
+        color: #fff;
+        border: none;
+        border-radius: 0 4px 4px 0;
+        cursor: pointer;
+        outline: none;
+    }
+
+    .searchbtn:hover {
+        background-color: #0056b3;
+    }
+
+
+    /* GLOBAL IMG */
+    .landscape-image {
+        width: 1349px;
+        height: 550px;
+        object-fit: cover;
+    }
+
+
+
+    .about-img {
+        width: 328px;
+        height: 295px;
+    }
+
+    .blog-img {
+        width: 340px;
+        height: 255px;
+    }
+
+    .staff-img {
+        width: 229px;
+        height: 229px;
+    }
+
+    .project-imgs {
+        width: 310px;
+        height: 254px;
+    }
+
+    .testimonial-img {
+        width: 100px !important;
+        height: 100px !important;
+    }
+
+    h1 {
+        margin-bottom: 10px;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .service-icon{
+        margin: 0 auto;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+    }
+
+    a .btn:focus ::before {
+        border-color: #ee9314;
+    }
+
+    /* TERMS STYLE */
+
+
+    .terms-container {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+
+    h1 {
+        margin-bottom: 10px;
+        justify-content: center;
+        text-align: center;
+    }
+
+    p {
+        margin-bottom: 10px;
+        color: black;
+    }
+
+    .section {
+        margin-bottom: 30px;
+    }
+
+    .section-heading {
+        font-weight: bold;
+    }
+
+    .clause {
+        margin-bottom: 10px;
+    }
+
+    .last-updated {
+        font-style: italic;
+        font-size: 12px;
+    }
+
+
+    /* STUDENT-REGISTER */
+
+
+
+
+    .form {
+        background-color: rgb(247, 243, 238);
+        width: 85%;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 10px;
+        color: #000;
+    }
+
+    input,
+    textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+    }
+
+    select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        background-color: #fff;
+    }
+
+    input[type="submit"] {
+        background-color: #000;
+        color: #fff;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #ddd;
+    }
+
+    /* FAQ STYLES */
+
+    .section {
+        margin-bottom: 20px;
+    }
+
+    .question {
+        font-weight: bold;
+        cursor: pointer;
+        color: black;
+    }
+
+    .answer {
+        display: none;
+        margin-top: 10px;
+        color: black;
+    }
+
+    .answer.active {
+        display: block;
+    }

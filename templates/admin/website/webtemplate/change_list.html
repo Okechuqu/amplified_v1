@@ -1,0 +1,234 @@
+{% extends "admin/change_list.html" %} {% block extrahead %}
+<style>
+  .hiddenbtn {
+    display: none;
+  }
+</style>
+{% endblock extrahead %} {% block content %}
+
+<p>Installed template: {{web_template_installed}}</p>
+<div class="container">
+  <form>
+    <center>
+      <i>Upload a website content</i>
+      <table>
+        <tr>
+          <td><input type="file" name="userfile" /></td>
+          <td><button type="submit" class="btn btn-dark">Upload</button></td>
+        </tr>
+      </table>
+    </center>
+  </form>
+  <hr />
+</div>
+
+<div class="container">
+  <div class="row">
+    {% for x in webapps %} {% if web_template_installed.name == x.name %}
+
+    <div class="col-lg-6 mb-4 mt-4 bg-white shadow">
+      <div class="row">
+        <div class="col-lg-4">
+          <img src="{{x.placeholder}}" height="300" width="180" />
+        </div>
+        <div class="col-lg-8">
+          <h3 class="text ml-4 bg-dark text-white p-2">{{x.name|upper}}</h3>
+          <ul class="ul">
+            <li>Type: {{x.type}}</li>
+            <li>Version: {{x.version}}</li>
+            <li>Author: {{x.author}}</li>
+            <li>Author Email: {{x.author_email}}</li>
+            <li>Description: {{x.description}}</li>
+          </ul>
+          <div class="ml-4 mb-4">
+            <table>
+              <tr>
+                <td>
+                  <button
+                    class="btn btn-sm btn-dark action-btn {% if web_template_installed.is_activated and web_template_installed.name == x.name %} hiddenbtn {% else %} {% endif %}"
+                    id="btn1{{forloop.counter}}"
+                    data-name="{{x.name}}"
+                    data-version="{{x.version}}"
+                    data-type="{{x.type}}"
+                    data-path="{{x.app}}"
+                    data-is_activated="1"
+                    data-message="Activated"
+                  >
+                    Activate
+                  </button>
+                </td>
+                <td>
+                  <button
+                    class="btn btn-sm btn-secondary action-btn {% if web_template_installed.is_activated and web_template_installed.name == x.name %} {% else %} hiddenbtn {% endif %}"
+                    id="btn2{{forloop.counter}}"
+                    data-name="{{x.name}}"
+                    data-version="{{x.version}}"
+                    data-type="{{x.type}}"
+                    data-path="{{x.app}}"
+                    data-is_activated="0"
+                    data-message="Deactivated"
+                  >
+                    Deactivate
+                  </button>
+                </td>
+                <td>
+                  <button
+                    class="btn btn-sm btn-danger action-btn"
+                    id="btn3{{forloop.counter}}"
+                    data-name="{{x.name}}"
+                    data-version="{{x.version}}"
+                    data-type="{{x.type}}"
+                    data-path="{{x.app}}"
+                    data-is_activated="clear"
+                    data-message="Delete"
+                  >
+                    Remove
+                  </button>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% else %}
+
+    <div class="col-lg-6 mb-4 mt-4 bg-white shadow">
+      <div class="row">
+        <div class="col-lg-4">
+          <img src="{{x.placeholder}}" height="300" width="180" />
+        </div>
+        <div class="col-lg-8">
+          <h3 class="text ml-4 bg-dark text-white p-2">{{x.name|upper}}</h3>
+          <ul class="ul">
+            <li>Type: {{x.type}}</li>
+            <li>Version: {{x.version}}</li>
+            <li>Author: {{x.author}}</li>
+            <li>Author Email: {{x.author_email}}</li>
+            <li>Description: {{x.description}}</li>
+          </ul>
+          <div class="ml-4 mb-4">
+            <table>
+              <tr>
+                <td>
+                  <button
+                    class="btn btn-sm btn-dark action-btn {% if web_template_installed.is_activated and web_template_installed.name == x.name %} hiddenbtn {% else %} {% endif %}"
+                    id="btn112{{forloop.counter}}"
+                    data-name="{{x.name}}"
+                    data-version="{{x.version}}"
+                    data-type="{{x.type}}"
+                    data-path="{{x.app}}"
+                    data-is_activated="1"
+                    data-message="Activated"
+                  >
+                    Activate
+                  </button>
+                </td>
+                <td>
+                  <button
+                    class="btn btn-sm btn-secondary action-btn {% if web_template_installed.is_activated and web_template_installed.name == x.name %} {% else %} hiddenbtn {% endif %}"
+                    id="btn145{{forloop.counter}}"
+                    data-name="{{x.name}}"
+                    data-version="{{x.version}}"
+                    data-type="{{x.type}}"
+                    data-path="{{x.app}}"
+                    data-is_activated="0"
+                    data-message="Deactivated"
+                  >
+                    Deactivate
+                  </button>
+                </td>
+                <td>
+                  <button
+                    class="btn btn-sm btn-danger action-btn"
+                    id="btn190{{forloop.counter}}"
+                    data-name="{{x.name}}"
+                    data-version="{{x.version}}"
+                    data-type="{{x.type}}"
+                    data-path="{{x.app}}"
+                    data-is_activated="0"
+                    data-message="Delete"
+                  >
+                    Remove
+                  </button>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% endif %} {% endfor %}
+  </div>
+</div>
+
+<script>
+  async function context(el) {
+    var base_url = el.target.baseURI;
+
+    var data = el.target.dataset;
+    var content = {};
+
+    for (var key in data) {
+      if (data.hasOwnProperty(key)) {
+        var value = data[key];
+        content[key] = value;
+      }
+    }
+    var jsonData = JSON.stringify(content);
+
+    try {
+      // Get the CSRF token from the cookie
+      var csrftoken = getCookie("csrftoken");
+
+      var response = await fetch(base_url + "register-website", {
+        method: "POST",
+        body: jsonData,
+
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": csrftoken,
+        },
+      });
+      // Handle the response as needed
+      var mes = await response.json();
+      alert(mes.message);
+      // reload the webpage after printing out the error
+      window.location.reload();
+    } catch (error) {
+      // Handle any errors that occurred during the fetch request
+      console.error(error);
+    }
+  }
+
+  // install this script
+  // Function to retrieve the CSRF token from the cookie
+  function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== "") {
+      var cookies = document.cookie.split(";");
+      for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i].trim();
+        // Check if the cookie name matches the csrf token cookie name
+        if (cookie.substring(0, name.length + 1) === name + "=") {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
+
+  var actionbtns = document.querySelectorAll(".action-btn");
+
+  for (let index = 0; index < actionbtns.length; index++) {
+    const element = actionbtns[index];
+    document
+      .getElementById(element.id)
+      .addEventListener("click", context, false);
+  }
+</script>
+
+{% endblock content %}

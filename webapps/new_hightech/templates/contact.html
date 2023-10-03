@@ -1,0 +1,104 @@
+{% extends 'base.html' %} {% block content %}
+
+
+<!-- Page Header -->
+{% for page in pageImage %}
+<div class="container-fluid page-header py-5" style="background: url({{page.img.url}})no-repeat 0 -150px; background-size: cover;  ">
+  {% endfor %}
+  <div class="container text-center py-5">
+    {% for title in titles %}
+    <h1 class="display-2 text-white mb-4 animated slideInDown">{{ title.aboutSubTitle }}</h1>
+    <nav aria-label="breadcrumb animated slideInDown">
+      <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/">Pages</a></li>
+        <li class="breadcrumb-item" aria-current="page">{{ title.aboutSubTitle }}</li>
+      </ol>
+    </nav>
+    {% endfor %}
+  </div>
+</div>
+<!-- Page Header End -->
+
+<!-- Fact Start -->
+{% include "front_template/facts.html" %}
+<!-- Fact End -->
+
+<!-- Contact Start -->
+<div id="contact" class="container-fluid py-5 mb-5">
+  <div class="container">
+    <div class="text-center mx-auto pb-5 wow fadeIn" data-wow-delay=".3s" style="max-width: 600px">
+      <h5 class="text-primary">{{ title.contactSubTitle }}</h5>
+      <h1 class="mb-3">{{ title.contactTitle }}</h1>
+    </div>
+    {% for contact in contacts %}
+    <div class="contact-detail position-relative p-5">
+      <div class="row g-5 mb-5 justify-content-center">
+        <div class="col-xl-4 col-lg-6 wow fadeIn" data-wow-delay=".3s">
+          <div class="d-flex bg-light p-3 rounded">
+            <div class="flex-shrink-0 btn-square bg-secondary rounded-circle" style="width: 64px; height: 64px">
+              <i class="fas fa-map-marker-alt text-white"></i>
+            </div>
+            <div class="ms-3">
+              <h4 class="text-primary">Address</h4>
+              <a href="{{ contact.addressUrl }}" target="_blank" class="h5">{{ contact.address }}</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-6 wow fadeIn" data-wow-delay=".5s">
+          <div class="d-flex bg-light p-3 rounded">
+            <div class="flex-shrink-0 btn-square bg-secondary rounded-circle" style="width: 64px; height: 64px">
+              <i class="fa fa-phone text-white"></i>
+            </div>
+            <div class="ms-3">
+              <h4 class="text-primary">Call Us</h4>
+              <a class="h5" href="tel:+234 {{ contact.phone }}" target="_blank">+234 {{ contact.phone }}</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-6 wow fadeIn" data-wow-delay=".7s">
+          <div class="d-flex bg-light p-3 rounded">
+            <div class="flex-shrink-0 btn-square bg-secondary rounded-circle" style="width: 64px; height: 64px">
+              <i class="fa fa-envelope text-white"></i>
+            </div>
+            <div class="ms-3">
+              <h4 class="text-primary">Email Us</h4>
+              <a class="h5" href="mailto:{{ contact.email }}" target="_blank">{{ contact.email }}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      <div class="row g-5">
+        <div class="col-lg-6 wow fadeIn" data-wow-delay=".3s">
+          <div class="p-3 h-100 rounded bg-secondary">
+            {% for contact in contacts %}
+            <iframe class="rounded w-100 h-100"
+              src="{{ contact.addressUrl }}"
+              style="border: 0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              {% endfor %}
+          </div>
+        </div>
+
+        <div class="col-lg-6 wow fadeIn" data-wow-delay=".5s">
+          <div class="p-3 rounded bg-secondary">
+            <form method="post" action="{% url 'feedback' %}">
+              {% csrf_token %} 
+              <div class="mb-4">{{ form.name }}</div>
+              <div class="mb-4">{{ form.email }}</div>
+              <div class="mb-4">{{ form.project }}</div>
+              <div class="mb-4">{{ form.message }}</div>
+              <div class="text-start">
+                <button class="btn bg-primary text-white py-3 px-5" type="submit">
+                  Send Message
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Contact End -->
+{% endblock content %}

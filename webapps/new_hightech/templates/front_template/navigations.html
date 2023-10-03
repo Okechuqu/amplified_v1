@@ -1,0 +1,24 @@
+<div class="navbar-nav ms-auto mx-xl-auto p-0">
+    
+    {% for nav in navigation  %}
+      
+    {% if nav.is_shown %}
+        {% if not nav.has_dropdown %}
+            <a href="{{nav.link}}" class="nav-item nav-link {% if nav.is_active  %}
+              active
+            {% endif %} text-dark">{{nav.title}}</a>
+        {% else %}
+        <div class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{{nav.title}}</a>
+            <!-- <div class="dropdown-menu rounded">
+                <a href="/blog" class="dropdown-item">Our Blog</a>
+                
+            </div> -->
+            </div>
+        {% endif %}
+
+    {% endif %}
+    {% endfor %}
+
+    
+  </div>

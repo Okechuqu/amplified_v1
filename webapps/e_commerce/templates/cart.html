@@ -1,0 +1,219 @@
+{% extends 'base.html' %}{% load humanize %} {% block content %}
+
+<div class="container">
+  <!-- HERO SECTION-->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="row px-4 px-lg-5 py-lg-4 align-items-center">
+        <div class="col-lg-6">
+          <h1 class="h2 text-uppercase mb-0">Cart</h1>
+        </div>
+        <div class="col-lg-6 text-lg-end">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-lg-end mb-0 px-0 bg-light">
+              <li class="breadcrumb-item">
+                <a class="text-dark" href="index.html">Home</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">Cart</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="py-5">
+    <h2 class="h5 text-uppercase mb-4">Shopping cart</h2>
+    <div class="row">
+      <div class="col-lg-8 mb-4 mb-lg-0">
+        <!-- CART TABLE-->
+        <div class="table-responsive mb-4">
+          <table class="table text-nowrap">
+            <thead class="bg-light">
+              <tr>
+                <th class="border-0 p-3" scope="col">
+                  <strong class="text-sm text-uppercase">#</strong>
+                </th>
+                <th class="border-0 p-3" scope="col">
+                  <strong class="text-sm text-uppercase">Product</strong>
+                </th>
+                <th class="border-0 p-3" scope="col">
+                  <strong class="text-sm text-uppercase">Price</strong>
+                </th>
+                <th class="border-0 p-3" scope="col">
+                  <strong class="text-sm text-uppercase">Quantity</strong>
+                </th>
+                <th class="border-0 p-3" scope="col">
+                  <strong class="text-sm text-uppercase">Total</strong>
+                </th>
+                <th class="border-0 p-3" scope="col">
+                  <strong class="text-sm text-uppercase"></strong>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="border-0">
+              {% for order_item in object.items.all %}
+              <tr>
+                <th class="ps-0 py-3 border-light border-0 p-3" scope="row">
+                  <strong class="d-flex align-items-center"
+                    >{{ forloop.counter }}</strong
+                  >
+                </th>
+                <td class="ps-0 py-3 border-light">
+                  <div class="">
+                    <a
+                      class="reset-anchor d-block animsition-link"
+                      href="/detail/{{ order_item.item.slug }}"
+                    >
+                      <img
+                        src="{{ order_item.item.pic1.url }}"
+                        alt="..."
+                        width="70"
+                      />
+                    </a>
+                    <div class="ms-3">
+                      <strong class="h6">
+                        <a
+                          class="reset-anchor animsition-link"
+                          href="/detail/{{ order_item.item.slug }}"
+                        >
+                          {{ order_item.item.title }}
+                        </a>
+                      </strong>
+                    </div>
+                  </div>
+                </td>
+                <td class="p-3 align-middle border-light">
+                  <p class="mb-0 small">
+                    ₦{{ order_item.item.price|intcomma }}
+                  </p>
+                </td>
+                <td class="p-3 align-middle border-light">
+                  <div
+                    class="border d-flex align-items-center justify-content-between px-3"
+                  >
+                    <span
+                      class="small text-uppercase text-gray headings-font-family"
+                    >
+                      Quantity
+                    </span>
+                    <div class="quantity">
+                      <button class="dec-btn p-0">
+                        <a
+                          href="{% url 'remove-single-from-cart' order_item.item.slug %}"
+                          ><i class="fas fa-caret-left"></i
+                        ></a>
+                      </button>
+                      <input
+                        class="form-control form-control-sm border-0 shadow-0 p-0"
+                        type="text"
+                        name="quantity"
+                        value="{{ order_item.quantity }}"
+                      />
+                      <button class="inc-btn p-0">
+                        <a
+                          href="{% url 'add-single-to-cart' order_item.item.slug %}"
+                          ><i class="fas fa-caret-right"></i
+                        ></a>
+                      </button>
+                    </div>
+                  </div>
+                </td>
+                <td class="p-3 align-middle border-light">
+                  {% if order_item.item.discount_price %}
+                  <p class="mb-0 small">
+                    ₦{{ order_item.get_total_discount_item_price|intcomma }}
+                  </p>
+                  <span class="badge bg-info"
+                    >Saving ₦{{ order_item.get_amount_saved|intcomma }}</span
+                  >
+                  {% else %}
+                  <p class="mb-0 small">
+                    ₦{{ order_item.get_total_item_price|intcomma }}
+                  </p>
+                  {% endif %}
+                </td>
+                <td class="p-3 align-middle border-light">
+                  <a
+                    class="reset-anchor"
+                    href="{{ order_item.item.get_remove_from_cart_url }}"
+                  >
+                    <i style="color: red" class="fas fa-trash-alt small"></i>
+                  </a>
+                </td>
+              </tr>
+              {%empty%}
+              <tr>
+                <td colspan="5">Your cart is Empty</td>
+              </tr>
+
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <!-- CART NAV-->
+        <div class="bg-light p-4">
+          <div class="row align-items-center">
+            <div class="col-md-6">
+              <ul class="list-inline mb-0">
+                <li class="list-inline-item py-1">
+                  <a class="btn btn-outline-primary" href="/">
+                    <i class="fas fa-shopping-bag me-2"></i>Continue shopping</a
+                  >
+                </li>
+                <li class="list-inline-item py-1">
+                  <a class="btn btn-primary" href="/checkout">
+                    <i class="far fa-credit-card me-2"></i>Process checkout</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-6 text-start text-md-end">
+              <p class="text-muted mb-1">Cart total</p>
+              <h6 class="h4 mb-0">₦{{ object.get_total|intcomma }}</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ORDER TOTAL-->
+      <div class="col-lg-4">
+        <div class="card border-0 rounded-0 p-lg-4 bg-light">
+          <div class="card-body">
+            <h5 class="text-uppercase mb-4">Cart total</h5>
+            <ul class="list-unstyled mb-0">
+              <li class="d-flex align-items-center justify-content-between">
+                <strong class="text-uppercase small font-weight-bold"
+                  >Subtotal</strong
+                ><span class="text-muted small"
+                  >₦{{ object.get_total|intcomma }}</span
+                >
+              </li>
+              <li class="border-bottom my-2"></li>
+              <li
+                class="d-flex align-items-center justify-content-between mb-4"
+              >
+                <strong class="text-uppercase small font-weight-bold"
+                  >Total</strong
+                ><span>₦{{ object.get_total|intcomma }}</span>
+              </li>
+              <li>
+                <form action="#">
+                  <div class="input-group mb-0">
+                    <input
+                      class="form-control"
+                      type="text"
+                      placeholder="Enter your coupon"
+                    />
+                    <button class="btn btn-dark btn-sm w-100" type="submit">
+                      <i class="fas fa-gift me-2"></i>Apply coupon
+                    </button>
+                  </div>
+                </form>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock content %}

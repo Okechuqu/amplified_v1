@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<!-- Page Header Start -->
+{% for page in pageImage %}
+<div class="container-fluid page-header py-5" style="background: url({{page.img.url}})no-repeat 0 -150px; background-size: cover;  ">
+  {% endfor %}
+  <div class="container text-center py-5">
+    {% for title in titles %}
+    <h1 class="display-2 text-white mb-4 animated slideInDown">{{ title.aboutSubTitle }}</h1>
+    <nav aria-label="breadcrumb animated slideInDown">
+      <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/">Pages</a></li>
+        <li class="breadcrumb-item" aria-current="page">{{ title.aboutSubTitle }}</li>
+      </ol>
+    </nav>
+    {% endfor %}
+  </div>
+</div><!-- Page Header End -->
+
+<div class="container-fluid">
+    <div class="container pt-5">
+        <div class="terms-container">
+            {% for term in terms %}
+
+            <!-- Introduction -->
+            <div class="section">
+                <h5 class="section-heading">Introduction</h5>
+                {% filter linebreaks %}
+                <p class="mb-4">{{ term.introduction | linebreaks }}</p>
+                {%endfilter%}
+            </div>
+
+            <!-- Use of the Website -->
+            <div class="section">
+                <h5 class="section-heading">Use of the Website</h5>
+                {% filter linebreaks %}
+                <p class="mb-4">{{ term.use_of_site | linebreaks }}</p>
+                {%endfilter%}
+            </div>
+
+            <!-- Intellectual Property -->
+            <div class="section">
+                <h5 class="section-heading">Intellectual Property</h5>
+                {% filter linebreaks %}
+                <p class="mb-4">{{ term.intel_property | linebreaks }}</p>
+                {%endfilter%}
+            </div>
+
+            <!-- User Content -->
+            <div class="section">
+                <h5 class="section-heading">User Content</h5>
+                {% filter linebreaks %}
+                <p class="mb-4">{{ term.user_content | linebreaks }}</p>
+                {%endfilter%}
+            </div>
+
+            <!-- Limitation of Liability -->
+            <div class="section">
+                <h5 class="section-heading">Limitation of Liability</h5>
+                {% filter linebreaks %}
+                <p class="mb-4">{{ term.liability | linebreaks }}</p>
+                {%endfilter%}
+            </div>
+
+            <!-- Indemnification -->
+            <div class="section">
+                <h5 class="section-heading">Indemnification</h5>
+                {% filter linebreaks %}
+                <p class="mb-4">{{ term.indemnification | linebreaks }}</p>
+                {%endfilter%}
+            </div>
+
+            <!-- Modifications -->
+            <div class="section">
+                <h5 class="section-heading">Modifications</h5>
+                {% filter linebreaks %}
+                <p class="mb-4">{{ term.modification | linebreaks }}</p>
+                {%endfilter%}
+            </div>
+
+            <!-- Governing Law -->
+            <div class="section">
+                <h5 class="section-heading">Governing Law</h5>
+                {% filter linebreaks %}
+                <p class="mb-4">{{ term.law | linebreaks }}</p>
+                {%endfilter%}
+            </div>
+
+            <!-- Last Updated -->
+            <p class="last-updated">Last Updated: {{ term.date }}</p>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+
+{% endblock content %}

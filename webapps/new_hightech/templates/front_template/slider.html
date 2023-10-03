@@ -1,0 +1,52 @@
+<div class="container-fluid px-0">
+    <div id="carouselId" class="carousel slide" data-bs-ride="carousel">
+    <ol class="carousel-indicators">
+      {% for slide in sliders %}
+      <li data-bs-target="#carouselId" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active" aria-current="true"{% endif %} aria-label="{{ forloop.counter}} Slide">
+      </li>
+      {% endfor %}
+    </ol>
+      <div class="carousel-inner" role="listbox">
+        {% for slide in sliders %}
+        <div class="carousel-item  {% if slide.is_active %}
+        active
+        {% else %}
+        
+        {% endif %} ">
+          <img src="{{ slide.img.url }}" class="img-fluid landscape-image" alt="First slide">
+         
+          <div class="carousel-caption">
+            <div class="container carousel-content">
+              <h6 class="text-secondary h4 animated fadeInUp">
+                {{ slide.title }}
+              </h6>
+              <h1 class="text-white display-1 mb-4 animated fadeInRight">
+                {{ slide.title }}
+              </h1>
+         
+              <p class="mb-4 text-white fs-5 animated fadeInDown">
+                {{ slide.description }}
+              </p>
+              <a href="/about" class="me-2"><button type="button"
+                  class="px-4 py-sm-3 px-sm-5 btn btn-primary rounded-pill carousel-content-btn1 animated fadeInLeft">
+                  Read More
+                </button></a>
+              <a href="/contact" class="ms-2"><button type="button"
+                  class="px-4 py-sm-3 px-sm-5 btn btn-primary rounded-pill carousel-content-btn2 animated fadeInRight">
+                  Contact Us
+                </button></a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselId" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselId" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>

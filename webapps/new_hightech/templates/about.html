@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+  {% for page in pageImage %}
+    <div class="container-fluid page-header py-5" style="background: url({{ page.img.url }})no-repeat ; background-size: cover; ">
+      <div class="container text-center py-5">
+        {% for title in titles %}
+          <h1 class="display-2 text-white mb-4 animated slideInDown">{{ title.aboutSubTitle }}</h1>
+          <nav aria-label="breadcrumb animated slideInDown">
+            <ol class="breadcrumb justify-content-center mb-0">
+              <li class="breadcrumb-item">
+                <a href="/">Home</a>
+              </li>
+              <li class="breadcrumb-item">
+                <a href="/">Pages</a>
+              </li>
+              <li class="breadcrumb-item" aria-current="page">{{ title.aboutSubTitle }}</li>
+            </ol>
+          </nav>
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+
+  <!-- Page Header End -->
+
+<!-- Fact Start -->
+{% include "front_template/facts.html" %}
+<!-- Fact End -->
+
+  <!-- About Start -->
+  <div id="about" class="container-fluid project  my-5">
+    <div class="container pt-5">
+      <div class="row g-5">
+        {% for title in titles %}
+          <h1 class="mb-4">{{ title.aboutTitle }}</h1>
+          <h5 class="text-primary">{{ title.aboutSubTitle }}</h5>
+        {% endfor %}
+        <div class="project-item col-lg-5 col-md-6 col-sm-12 wow fadeIn" data-wow-delay=".3s">
+          {% for about in abouts %}
+            <div class="h-100 position-relative">
+              <img src="{{ about.img.url }}" class="about-img img-fluid w-100 rounded" alt="about-img" style="margin-bottom: 1%" />
+            </div>
+          {% endfor %}
+        </div>
+        <div class="col-lg-7 col-md-6 col-sm-12 wow fadeIn" data-wow-delay=".5s">
+          {% for about in abouts %}
+            {% filter linebreaks %}
+              <p class="mb-4">{{ about.fullContent | linebreaks }}</p>
+              {% comment %} <a href="/about" class="btn rounded-pill text-dark" style="justify-content: center; display: block; width: 150px; margin-left: 100px;">More Details</a> {% endcomment %}
+            {% endfilter %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- About End -->
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'base.html' %} {% block content %}
+<!-- Page Header -->
+{% for page in pageImage %}
+<div class="container-fluid page-header py-5" style="background: url({{page.img.url}}) no-repeat 0 -150px; background-size: cover;  ">
+  {% endfor %}
+  <div class="container text-center py-5">
+    {% for title in titles %}
+    <h1 class="display-2 text-white mb-4 animated slideInDown">{{ title.aboutSubTitle }}</h1>
+    <nav aria-label="breadcrumb animated slideInDown">
+      <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/">Pages</a></li>
+        <li class="breadcrumb-item" aria-current="page">{{ title.aboutSubTitle }}</li>
+      </ol>
+    </nav>
+    {% endfor %}
+  </div>
+</div>
+<!-- Page Header End -->
+
+<!-- Fact Start -->
+{% include "front_template/facts.html" %}
+<!-- Fact End -->
+
+
+<!-- Project Start -->
+<div id="project" class="container-fluid project py-5 mb-5">
+  <div class="container">
+    <div class="text-center mx-auto pb-5 wow fadeIn" data-wow-delay=".3s" style="max-width: 600px">
+      <h5 class="text-primary">{{ title.projectSubTitle }}</h5>
+      <h1>{{ title.projectTitle }}</h1>
+    </div>
+    <div class="row g-5">
+      {% for project in projects %}
+      <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay=".3s">
+        <div class="project-item">
+          <div class="project-img">
+            <img src="{{ project.img.url }}" class="img-fluid w-100 rounded project-imgs" alt="" />
+            <div class="project-content">
+              <a href="/project-detail/{{ project.slug }}" class="text-center">
+                <h4 class="text-secondary">{{ project.projectName }}</h4>
+                <p class="m-0 text-white">{{ project.context }}</p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<!-- Project End -->
+
+{% endblock content %}

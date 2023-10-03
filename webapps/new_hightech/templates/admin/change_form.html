@@ -1,0 +1,12 @@
+{% extends "admin/change_form.html" %}
+
+{% block content %}
+{% if not original %}
+<div>
+    <a href="{% url 'admin:About' %}" class="addlink">
+        <input type="button" value="Populate Model Field">
+    </a>
+</div>
+{% endif %}
+{{ block.super }}
+{% endblock %} 

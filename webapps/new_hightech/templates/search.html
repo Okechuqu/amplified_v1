@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<!-- Page Header -->
+{% for page in pageImage %}
+<div class="container-fluid page-header py-5" style="background: url({{page.img.url}}) no-repeat 0 -150px; background-size: cover;  ">
+  {% endfor %}
+  <div class="container text-center py-5">
+    {% for title in titles %}
+    <h1 class="display-2 text-white mb-4 animated slideInDown">{{ title.aboutSubTitle }}</h1>
+    <nav aria-label="breadcrumb animated slideInDown">
+      <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/">Pages</a></li>
+        <li class="breadcrumb-item" aria-current="page">{{ title.aboutSubTitle }}</li>
+      </ol>
+    </nav>
+    {% endfor %}
+  </div>
+</div><!-- Page Header End -->
+
+<div class="container ">
+  <div>
+    <form action="{% url 'search' %}" method="post">
+      {% csrf_token %}
+      <input type="search" name="q" placeholder="Search...">
+      <button type="submit" class="btn searchbtn"><i class="bi bi-search text-white "></i></button>
+    </form>
+  </div>
+  <div>
+    <h2>Search Results:</h2>
+    <div id="project" class="container-fluid project py-4 mb-1">
+      <div class="container">
+        <div class="row g-5">
+          {% for project in projectResults %}
+          <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay=".3s">
+            <div class="project-item">
+              <div class="project-img">
+                <img src="{{ project.img.url }}" class="img-fluid w-100 rounded project-imgs" alt="" />
+                <div class="project-content">
+                  <a href="/project" class="text-center">
+                    <h4 class="text-secondary">{{ project.projectName }}</h4>
+                    <p class="m-0 text-white">{{ project.context }}</p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div id="service" class="container-fluid services py-4 mb-1">
+      <div class="container">
+        <div class="row g-5 services-inner">
+          {% for service in servicesResults %}
+          <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay=".3s">
+            <div class="services-item bg-light">
+              <div class="p-4 text-center services-content">
+                <div class="services-content-icon">
+                  <i class="fas {{ service.icon }} fa-7x mb-4 text-primary"></i>
+                  <h4 class="mb-3">{{ service.name }}</h4>
+                  {% filter linebreaks %}
+                  <p class="mb-4">{{ service.content | linebreaks }}</p>
+                  {%endfilter%}
+                  <a href="{{ service.slug }}" class="btn btn-secondary text-white px-5 py-3 rounded-pill">Read More</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Advertisement -->
+<section class="container-fluid " >
+  <div class="container col-lg-12 wow fadeIn " data-wow-delay=".3s">
+    {% for advert in adverts %}
+    <div class=" h-100 w-100">
+      <iframe  width="100%" height="315" src="{{ advert.adLink }}?autoplay=1" style="border: 0" allowfullscreen=""
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- Advertisement End -->
+
+{% endblock content %}

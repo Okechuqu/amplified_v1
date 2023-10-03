@@ -1,0 +1,11 @@
+{
+  "name": "hightech",
+  "type": "website",
+  "version": "0.0.0",
+  "author": "Sharashell Technology Limited",
+  "author_email": "example@gmail.com",
+  "description": "This is a system Hightech website",
+  "placeholder": "https://www.technewstoday.com/wp-content/uploads/2022/11/microsoft-store-not-opening.webp",
+  "js": [],
+  "css": []
+}

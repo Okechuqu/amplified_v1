@@ -1,0 +1,416 @@
+{% load static %}
+{% static 'js' as js %}
+{% static 'lib' as lib %}
+{% static 'css' as css %}
+{% static 'img' as img %}
+{% load cart_template_tags %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>AI_DECOR_HUB</title>
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="all,follow" />
+
+  <!-- Custom stylesheet - for your changes-->
+  <link rel="stylesheet" href="{{css}}/custom.css" />
+
+  <!-- font Awsome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/css/bootstrap.min.css" />
+  <!-- gLightbox gallery-->
+  <link rel="stylesheet" href=" {{okechuqu}}/glightbox/css/glightbox.min.css" />
+  <!-- Range slider-->
+  <link rel="stylesheet" href="{{okechuqu}}/nouislider/nouislider.min.css" />
+  <!-- Choices CSS-->
+  <link rel="stylesheet" href="{{okechuqu}}/choices.js/public/assets/styles/choices.min.css" />
+  <!-- Swiper slider-->
+  <link rel="stylesheet" href="{{okechuqu}}/swiper/swiper-bundle.min.css" />
+  <!-- Google fonts-->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;700&amp;display=swap" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Martel+Sans:wght@300;400;800&amp;display=swap" />
+  <!-- theme stylesheet-->
+  <link rel="stylesheet" href="{{css}}/style.default.css" id="theme-stylesheet" />
+  <!-- Favicon-->
+  <link rel="shortcut icon" href="img/favicons.png" />
+
+  {% comment %} Custom Css {% endcomment %}
+  <link rel='stylesheet' href='{{css}}/basic.css' />
+</head>
+
+<body style="background-color: rgb(237, 241, 241)">
+  <div class="page-holder">
+    <!-- navbar-->
+    <header class="header" style="background-color: blanchedalmond">
+      <div class="bg-dark">
+        <div class="container">
+          <a href="/./"><img src="{% static 'img/favicon-l.png' %} " style="border-radius: 30%" alt="" /></a>
+
+          <ul class="navbar-nav ms-auto pt-4" style="float: right">
+            {% if request.user.is_authenticated %}
+            <li class="nav-item" style="float: right">
+              <a class="nav-link" href="/cart">
+                <i class="fas fa-dolly-flatbed me-1 text-white"></i>
+                <small class="text-gray fw-normal">{{ request.user | cart_item_count }}
+                </small>
+              </a>
+            </li>
+
+            {% endif %}
+          </ul>
+
+          <ul class="navbar-nav ms-auto pt-4" style="float: right">
+            {% if request.user.is_authenticated %}
+            <li class="nav-item" style="float: right">
+              <a class="nav-link" href="{% url 'profile' user_id=user.id %}">
+                Hi, {{user.username}}
+                <i class="fas fa-user me-1 fa-2xl"></i>&nbsp; &nbsp;
+              </a>
+            </li>
+            {% else %}
+            <li class="nav-item" style="float: right">
+              <a class="nav-link" href="/login">
+                <i class="fas fa-user me-1 text-gray fw-normal"></i>
+                Login
+              </a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+      <div class="container px-lg-3">
+        <nav class="navbar navbar-expand-lg navbar-light py-3 px-lg-0">
+          <a class="navbar-brand" href="/./"><span class="fw-bold text-uppercase text-dark">Achiever Interior</span>
+            <h2>Decor Hub</h2>
+          </a>
+          <button class="navbar-toggler navbar-toggler-end" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+              <li class="magic">
+                <a href="javascript:void(0)" class="dropbtn">APPLIANCES</a>
+                <div class="magic-content">
+                  <ul>
+                    <li>
+                      <div>
+                        <h6 style="text-decoration: underline">HOME</h6>
+                        <a href="/./tele">Televisions</a>
+                        <a href="/./sous">Sound Systems</a>
+                        <a href="/./fridge">Refrigerators</a>
+                        <a href="/./wash">Washers & Dryers</a>
+                        <a href="/./range">Ranges</a>
+                        <a href="/./microw">Microwaves</a>
+                        <a href="/./cook">Cook Tops</a>
+                        <a href="/./appspart">Appliances Parts</a>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        <h6 style="text-decoration: underline">CURTAIN</h6>
+                        <a href="/./curtainH">Shower Curtains Hooks</a>
+                        <a href="/./decorativeR">Decorative Rods</a>
+                        <a href="/./basicR">Basic Rods</a>
+                        <a href="/./specialtyR">Specialty Rods</a>
+                        <a href="/./continentalR">Continental Rods</a>
+                        <a href="/./magneticR">Magnetic Rods</a>
+                        <a href="/./traverseR">Traverse Rods</a>
+                        <a href="/./tensionR">Tension and Sash Rods</a>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="magic">
+                <div>
+                  <a href="javascript:void(0)" class="dropbtn">FABRICS</a>
+                </div>
+                <div class="magic-content">
+                  <ul>
+                    <li>
+                      <div>
+                        <h6 style="text-decoration: underline">Curtains</h6>
+                        <a href="/./plainC">Plain Curtains</a>
+                        <a href="/./sheerC">Sheer Curtains</a>
+                        <a href="/./kidsC">Kids Curtains</a>
+                        <a href="/./jacquardC">Jacquard Curtains</a>
+                        <a href="/./printedC">Printed Curtains</a>
+                        <a href="/./selftextC">Self Textured Curtains</a>
+                        <a href="/./selfblackC">Self Blackout Curtains</a>
+                        <a href="/./kitchenC">Kitchen Curtains</a>
+                        <a href="/./fabricC">Fabric Shower Curtains</a>
+                        <a href="/./vinylC">Vinyl Shower Curtains</a>
+                        <a href="/./curtainL">Shower Curtains Liners</a>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        <h6 style="text-decoration: underline">Blinds</h6>
+                        <a href="/./romanB">Roman Blinds</a>
+                        <a href="/./rollerB">Roller Blinds</a>
+                        <a href="/./zebraB">Zebra Blinds</a>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        <h6 style="text-decoration: underline">Valences</h6>
+                        <a href="/./swag">Swags</a>
+                        <a href="/./tailoredV">Tailored Valences</a>
+                        <a href="/./ruffledV">Ruffled Valences</a>
+                        <a href="/./tieV">Tie Up Valences</a>
+                        <a href="/./grommetV">Grommet Valences</a>
+                        <a href="/./scarfV">Scarf Valences</a>
+                        <a href="/./laceV">Lace Valences</a>
+                        <a href="/./sheer">Sheer Valences</a>
+                        <a href="/./corniceV">Cornice Valences</a>
+                        <a href="/./tuckedV">Tucked Valences</a>
+                      </div>
+                    </li>
+
+                    <li>
+                      <div>
+                        <h6 style="text-decoration: underline">Bedding</h6>
+                        <a href="/./comforterS">Comforter Set </a>
+                        <a href="/./quiltS">Quilt set </a>
+                        <a href="/./duvetC">Duvet Covers </a>
+                        <a href="/./daybedS">Day Bed Set </a>
+                        <a href="/./bedspread"> Bed Spreads</a>
+                        <a href="/./bedskirt">Bed Skirts </a>
+                        <a href="/./chairpad">Chairpads and Rocking Chair Cushion
+                        </a>
+                        <a href="/./tosspillow">Toss Pillows </a>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="magic">
+                <a href="javascript:void(0)" class="dropbtn">LIGHTING </a>
+                <div class="magic-content">
+                  <a href="/./ceilingFan"> Ceiling Fans</a>
+                  <a href="/./chandeliers">Chandeliers</a>
+                  <a href="/./lamps">Lamps</a>
+                  <a href="/./lightbulbs">Light Bulbs</a>
+                  <a href="/./outdoorlight">Outdoor Lighting</a>
+                  <a href="/./wallsconces">Wall Sconces</a>
+                  <a href="/./vanitylight">Vanity Lighting</a>
+                  <a href="/./pendantlight">Pendant Lights</a>
+                  <a href="/./stringlights">String Lights</a>
+                  <a href="/./cabinetlight">Cabinet Lights</a>
+                  <a href="/./recessedlight">Recessed Lighting</a>
+                </div>
+              </li>
+            </ul>
+
+            <ul class="navbar-nav ms-auto">
+              <li class="magic">
+                <a href="javascript:void(0)" class="dropbtn">FURNITURE</a>
+                <div class="magic-content">
+                  <a href="/./livingroomF">Living Room Furniture</a>
+                  <a href="/./homeofficeF">Home Office Furniture</a>
+                  <a href="/./kitchenF">Kitchen & Dining Room Furniture</a>
+                  <a href="/./barF">Bar Furniture </a>
+                  <a href="/./bedF">Bedroom Furniture</a>
+                  <a href="/./patioF">Patio Furniture</a>
+                  <a href="/./accentchair">Accent Chair</a>
+                  <a href="/./walldecor">Wall Decor</a>
+                  <a href="/./storageunit">Storage Shelving Unit</a>
+                  <a href="/./homedecor">Home Decor</a>
+                  <a href="/./southernE">Southern Enterprises</a>
+                  <a href="/./LRFS">LIVING ROOM FURNITURE SET</a>
+                </div>
+              </li>
+              <li class="magic">
+                <a href="javascript:void(0)" class="dropbtn">BATH</a>
+                <div class="magic-content">
+                  <a href="/./vanitiesB"> Bathroom Vanities</a>
+                  <a href="/./bathtubs">Bathtubs</a>
+                  <a href="/./faucetsB">Bathroom Faucets</a>
+                  <a href="/./shower">Showers</a>
+                  <a href="/./storageB">Bathroom Storage</a>
+                  <a href="/./sinkB">Bathroom Sinks</a>
+                  <a href="/./accessoriesB">Bathroom Accessories</a>
+                  <a href="/./mirrorsB">Bathroom Mirrors</a>
+                  <a href="/./toilets">Toilets</a>
+                </div>
+              </li>
+              <li class="magic">
+                <a href="javascript:void(0)" class="dropbtn">KITCHEN</a>
+                <div class="magic-content">
+                  <a href="/./faucetsK">Kitchen Faucets</a>
+                  <a href="/./sinksK">Kitchen Sinks</a>
+                  <a href="/./storageK">Kitchen Storage & Organization</a>
+                  <a href="/./tablebar">Tableware & Bar</a>
+                  <a href="/./waterfilters">Water Filters</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!--  Modal -->
+    <div class="modal fade" id="productView" tabindex="-1">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content overflow-hidden border-0">
+          <button class="btn-close p-4 position-absolute top-0 end-0 z-index-20 shadow-0" type="button"
+            data-bs-dismiss="modal" aria-label="Close"></button>
+          <div class="modal-body p-0">
+            <div class="row align-items-stretch">
+              <div class="col-lg-6 p-lg-0">
+                <a class="glightbox product-view d-block h-100 bg-cover bg-center" href="{{ item.pic1.url }}"
+                  data-gallery="gallery1" data-glightbox="Red digital smartwatch"></a><a class="glightbox d-none"
+                  href="{{ item.pic2.url }}" data-gallery="gallery1" data-glightbox="Red digital smartwatch"></a><a
+                  class="glightbox d-none" href="{{ item.pic3.url }}" data-gallery="gallery1"
+                  data-glightbox="Red digital smartwatch"></a>
+              </div>
+              <div class="col-lg-6">
+                <div class="p-4 my-md-4">
+                  <ul class="list-inline mb-2">
+                    <li class="list-inline-item m-0">
+                      <i class="fas fa-star small text-warning"></i>
+                    </li>
+                    <li class="list-inline-item m-0 1">
+                      <i class="fas fa-star small text-warning"></i>
+                    </li>
+                    <li class="list-inline-item m-0 2">
+                      <i class="fas fa-star small text-warning"></i>
+                    </li>
+                    <li class="list-inline-item m-0 3">
+                      <i class="fas fa-star small text-warning"></i>
+                    </li>
+                    <li class="list-inline-item m-0 4">
+                      <i class="fas fa-star small text-warning"></i>
+                    </li>
+                  </ul>
+                  <h2 class="h4">{{ object.title }}</h2>
+                  <p class="text-muted">${{ object.price }}</p>
+                  <p class="text-sm mb-4">{{ object.description}}</p>
+                  <div class="row align-items-stretch mb-4 gx-0">
+                    <div class="col-sm-7">
+                      <div class="border d-flex align-items-center justify-content-between py-1 px-3">
+                        <span class="small text-uppercase text-gray mr-4 no-select">Quantity</span>
+                        <div class="quantity">
+                          <button class="dec-btn p-0">
+                            <i class="fas fa-caret-left"></i>
+                          </button>
+                          <input class="form-control border-0 shadow-0 p-0" type="text" value="1" />
+                          <button class="inc-btn p-0">
+                            <i class="fas fa-caret-right"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-5">
+                      <a class="btn btn-dark btn-sm w-100 h-100 d-flex align-items-center justify-content-center px-0"
+                        href="/./cart">Add to cart</a>
+                    </div>
+                  </div>
+                  <a class="btn btn-link text-dark text-decoration-none p-0" href="#!"><i
+                      class="far fa-heart me-2"></i>Add to wish list</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% if messages %} {% for message in messages %}
+  <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    {{ message }}
+  </div>
+  {% endfor %} {% endif %}
+
+  <section>{% block content %} {% endblock content %}</section>
+
+  <footer class="bg-dark text-white">
+    <div class="container py-4">
+      <div class="row py-5">
+        <div class="col-md-4 mb-3 mb-md-0">
+          <h6 class="text-uppercase mb-3">Customer services</h6>
+          <ul class="list-unstyled mb-0">
+            <li>
+              <a class="footer-link" href="/./contact">Help &amp; Contact Us</a>
+            </li>
+            <li>
+              <a class="footer-link" href="/./returns">Returns &amp; Refunds</a>
+            </li>
+            <li>
+              <a class="footer-link" href="/./conditions">Terms &amp; Conditions</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-4 mb-3 mb-md-0">
+          <h6 class="text-uppercase mb-3">Company</h6>
+          <ul class="list-unstyled mb-0">
+            <li><a class="footer-link" href="/./">Home</a></li>
+            <li><a class="footer-link" href="/./account">My Account</a></li>
+            <li><a class="footer-link" href="/./why">Why Buy From Us</a></li>
+            <li>
+              <a class="footer-link" href="/./services">Available Services</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h6 class="text-uppercase mb-3">Social media</h6>
+          <ul class="list-unstyled mb-0">
+            <li>
+              <a class="footer-link" href="https://twitter.com/AI_DECOR_HUB">Twitter</a>
+            </li>
+            <li>
+              <a class="footer-link" href="https://instagram.com/AI_DECOR_HUB">Instagram</a>
+            </li>
+            <li>
+              <a class="footer-link" href="https://facebook.com/AI_DECOR_HUB">Facebook</a>
+            </li>
+            <li>
+              <a class="footer-link" href="https://tiktok.com/@ai_decor_hub">Tiktok</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-top pt-4" style="border-color: #1d1d1d !important">
+        <div class="row">
+          <div class="col-md-6 text-center text-md-start">
+            <p class="small text-muted mb-0">
+              &copy; 2021 All rights reserved.
+            </p>
+          </div>
+          <div class="col-md-6 text-center text-md-end">
+            <p class="small text-muted mb-0">
+              This Website is built with love ❤️ by
+              <a class="text-white reset-anchor" href="https://facebook.com/{{okechuqu}}">{{Okechuqu}}</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- JavaScript files-->
+  <script src="{{okechuqu}}/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="{{okechuqu}}/glightbox/js/glightbox.min.js"></script>
+  <script src="{{okechuqu}}/nouislider/nouislider.min.js"></script>
+  <script src="{{okechuqu}}/swiper/swiper-bundle.min.js"></script>
+  <script src="{{okechuqu}}/choices.js/public/assets/scripts/choices.min.js"></script>
+  <script src="{{js}}/front.js"></script>
+
+  <!-- FontAwesome CSS -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
+</body>
+
+</html>

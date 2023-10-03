@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-6 mb-5 mb-lg-0">
+            <div class="row">
+                <div class="col-md-10 order-1 order-md-2 mb-4 mb-lg-0">
+                    {% for service in services %}
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <i class="fas {{ service.icon }} fa-7x mb-4 text-dark service-icon"></i>
+                                <h4 class="mb-3">{{ service.name }}</h4>
+                                {% filter linebreaks %}
+                                <p class="mb-4">{{ service.content | linebreaks }}</p>
+                                {%endfilter%}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            {% for title in titles %}
+            <div class="badge bg-secondary rounded-2 p-4 mb-2">{{ title.serviceSubTitle }}</div>
+            {% endfor %}
+            {% for service in services %}
+            <h4 class="text-secondary">{{ service.serviceName }}</h4>
+            {% filter linebreaks %}
+            <p class="m-0 text-white">{{ service.fullContent | linebreaks }}</p>
+            {%endfilter%}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+{% endblock content %}
